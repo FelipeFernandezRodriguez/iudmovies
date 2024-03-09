@@ -31,8 +31,7 @@ router.post('/',
                 return res.status(400).json({ messages: errors.array() });
             }
 
-            const existeProductora = await Media.findOne({ nombre: req.body.nombre });
-
+            const existeProductora = await Productora.findOne({ nombre: req.body.nombre });
             if(existeProductora){
                 return res.status(400).send('Ya existe la productora');
             }

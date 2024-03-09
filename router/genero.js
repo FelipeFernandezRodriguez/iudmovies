@@ -30,8 +30,7 @@ router.post('/',
                 return res.status(400).json({ messages: errors.array() });
             }
 
-            const existeGenero = await Media.findOne({ nombre: req.body.nombre });
-
+            const existeGenero = await Genero.findOne({ nombre: req.body.nombre });
             if(existeGenero){
                 return res.status(400).send('Ya existe el genero');
             }
@@ -75,7 +74,6 @@ router.put('/:generoId',
             }
 
             const existeGenero = await Genero.findOne({ nombre: req.body.nombre, _id: { $ne: genero._id } });
-
             if(existeGenero){
                 return res.status(400).send('Ya existe el genero');
             }
