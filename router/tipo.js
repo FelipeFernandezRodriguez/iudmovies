@@ -90,4 +90,20 @@ router.put('/:tipoId',
     }
 );
 
+router.get('/:tipoId', async function(req, res){
+    try{
+
+        const tipo = await Tipo.findById(req.params.tipoId);
+        if(!tipo){
+            return res.status(400).send('Tipo no existe');
+        }
+
+        res.send(tipo);
+
+    } catch(error){
+        console.log(error);
+        res.status(500).send('Ocurrio un error al consultar el tipo');
+    }
+});
+
 module.exports = router;

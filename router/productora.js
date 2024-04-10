@@ -98,4 +98,20 @@ router.put('/:productoraId',
     }
 );
 
+router.get('/:productoraId', async function(req, res){
+    try{
+
+        const productora = await Productora.findById(req.params.productoraId);
+        if(!productora){
+            return res.status(400).send('Productora no existe');
+        }
+
+        res.send(productora);
+
+    } catch(error){
+        console.log(error);
+        res.status(500).send('Ocurrio un error al consultar la productora');
+    }
+});
+
 module.exports = router;

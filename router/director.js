@@ -80,4 +80,20 @@ router.put('/:directorId',
     }
 );
 
+router.get('/:directorId', async function(req, res){
+    try{
+
+        const director = await Director.findById(req.params.directorId);
+        if(!director){
+            return res.status(400).send('Director no existe');
+        }
+
+        res.send(director);
+
+    } catch(error){
+        console.log(error);
+        res.status(500).send('Ocurrio un error al consultar el director');
+    }
+});
+
 module.exports = router;

@@ -94,4 +94,20 @@ router.put('/:generoId',
     }
 );
 
+router.get('/:generoId', async function(req, res){
+    try{
+
+        const genero = await Genero.findById(req.params.generoId);
+        if(!genero){
+            return res.status(400).send('Genero no existe');
+        }
+
+        res.send(genero);
+
+    } catch(error){
+        console.log(error);
+        res.status(500).send('Ocurrio un error al consultar genero');
+    }
+});
+
 module.exports = router;
